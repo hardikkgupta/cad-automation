@@ -1,0 +1,47 @@
+ingestion:
+  replicaCount: 2
+  image:
+    repository: cad-automation/ingestion
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 8080
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+
+validation:
+  replicaCount: 2
+  image:
+    repository: cad-automation/validation
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 3000
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+
+kafka:
+  enabled: true
+  replicaCount: 3
+  persistence:
+    enabled: true
+    size: 10Gi
+
+cassandra:
+  enabled: true
+  replicaCount: 3
+  persistence:
+    enabled: true
+    size: 20Gi 
